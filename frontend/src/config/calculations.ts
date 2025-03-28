@@ -120,14 +120,6 @@ const FATORES = {
   perda_plastico: 1.1, // 10% de perda
 }
 
-// Proporções do concreto (1:2:3)
-const PROPORCOES_CONCRETO = {
-  cimento: 1,
-  areia: 2,
-  brita: 3,
-  agua: 0.5,
-}
-
 // Consumo de materiais por m³ de concreto
 const CONSUMO_MATERIAIS = {
   cimento: 7.5, // sacos/m³
