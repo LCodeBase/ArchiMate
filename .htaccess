@@ -1,13 +1,7 @@
 # Configurar políticas de permissão
 <IfModule mod_headers.c>
-    Header set Permissions-Policy "interest-cohort=()"
-    Header set Permissions-Policy "browsing-topics=()"
-    Header set Permissions-Policy "run-ad-auction=()"
-    Header set Permissions-Policy "join-ad-interest-group=()"
-    Header set Permissions-Policy "private-state-token-redemption=()"
-    Header set Permissions-Policy "private-state-token-issuance=()"
-    Header set Permissions-Policy "private-aggregation=()"
-    Header set Permissions-Policy "attribution-reporting=()"
+    # Consolidar todas as políticas em uma única diretiva para evitar conflitos
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
 # Configurar cache para arquivos estáticos
