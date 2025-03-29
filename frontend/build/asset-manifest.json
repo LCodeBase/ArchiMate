@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ArchiMate/static/css/main.b0c820d1.css",
+    "main.js": "/ArchiMate/static/js/main.3ddbd2a1.js",
+    "index.html": "/ArchiMate/index.html",
+    "main.b0c820d1.css.map": "/ArchiMate/static/css/main.b0c820d1.css.map",
+    "main.3ddbd2a1.js.map": "/ArchiMate/static/js/main.3ddbd2a1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0c820d1.css",
+    "static/js/main.3ddbd2a1.js"
+  ]
+}
