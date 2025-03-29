@@ -14,52 +14,27 @@ Uma ferramenta online para calcular a quantidade de materiais necessários em ob
 
 ### Frontend
 
-- React.js
+- React.js com TypeScript
 - Tailwind CSS
-- JavaScript (ES6+)
-
-### Backend
-
-- Node.js
-- Express.js
-- SQLite (para armazenamento de projetos)
+- Vite (para build e desenvolvimento)
 
 ## 📁 Estrutura do Projeto
 
 ```
 calculadora-construcao/
-├── frontend/           # Aplicação React
-├── backend/           # API Node.js/Express
-└── docs/             # Documentação
+└── frontend/           # Aplicação React
 ```
 
-## 🚀 Como Executar
+## 🚀 Como Iniciar
 
-1. Clone o repositório
-2. Instale as dependências:
+### Frontend
 
-   ```bash
-   # Frontend
-   cd frontend
-   npm install
-
-   # Backend
-   cd backend
-   npm install
-   ```
-
-3. Execute o projeto:
-
-   ```bash
-   # Frontend
-   cd frontend
-   npm start
-
-   # Backend
-   cd backend
-   npm run dev
-   ```
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença MIT.

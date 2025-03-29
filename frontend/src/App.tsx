@@ -1,68 +1,110 @@
-import React, { useState } from 'react';
-import WallCalculator from './components/WallCalculator';
-import SlabCalculator from './components/SlabCalculator';
+import { useState } from 'react'
+import BrickCalculator from './components/BrickCalculator'
+import MortarCalculator from './components/MortarCalculator'
+import ConcreteCalculator from './components/ConcreteCalculator'
+import ResultDisplay from './components/ResultDisplay'
+import Layout from './components/Layout'
+import './App.css'
 
 function App() {
-  const [activeCalculator, setActiveCalculator] = useState<'wall' | 'slab'>('wall');
+  const [activeTab, setActiveTab] = useState<string>('tijolos');
+  const [results, setResults] = useState<{
+    brickCalculation?: {
+      brickCount: number;
+      cementAmount: number;
+      sandAmount: number;
+    };
+    mortarCalculation?: {
+      cementAmount: number;
+      sandAmount: number;
+      waterAmount: number;
+    };
+    concreteCalculation?: {
+      concreteVolume: number;
+      cementBags: number;
+      sandVolume: number;
+      gravelVolume: number;
+    };
+  }>({});
+
+  const handleBrickCalculation = (result: {
+    brickCount: number;
+    cementAmount: number;
+    sandAmount: number;
+  }) => {
+    setResults(prev => ({
+      ...prev,
+      brickCalculation: result
+    }));
+  };
+
+  const handleMortarCalculation = (result: {
+    cementAmount: number;
+    sandAmount: number;
+    waterAmount: number;
+  }) => {
+    setResults(prev => ({
+      ...prev,
+      mortarCalculation: result
+    }));
+  };
+
+  const handleConcreteCalculation = (result: {
+    concreteVolume: number;
+    cementBags: number;
+    sandVolume: number;
+    gravelVolume: number;
+  }) => {
+    setResults(prev => ({
+      ...prev,
+      concreteCalculation: result
+    }));
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <header className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <img src="/logo.svg" alt="Logo" className="h-12 w-12 mr-4" />
-              <h1 className="text-3xl font-bold text-gray-900">
-                Calculadora de Materiais
-              </h1>
+    <Layout title="Calculadora de Materiais para Construção" subtitle="Calcule a quantidade de materiais necessários para sua obra">
+      <div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+        {/* Tabs */}
+        <div className="flex border-b">
+          <button
+            className={`px-4 py-2 text-sm font-medium ${activeTab === 'tijolos' ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('tijolos')}
+          >
+            Tijolos/Blocos
+          </button>
+          <button
+            className={`px-4 py-2 text-sm font-medium ${activeTab === 'argamassa' ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('argamassa')}
+          >
+            Argamassa
+          </button>
+          <button
+            className={`px-4 py-2 text-sm font-medium ${activeTab === 'concreto' ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('concreto')}
+          >
+            Concreto para Lajes
+          </button>
+        </div>
+
+        {/* Calculator Content */}
+        <div className="p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              {activeTab === 'tijolos' && <BrickCalculator onCalculate={handleBrickCalculation} />}
+              {activeTab === 'argamassa' && <MortarCalculator onCalculate={handleMortarCalculation} />}
+              {activeTab === 'concreto' && <ConcreteCalculator onCalculate={handleConcreteCalculation} />}
             </div>
-            <nav className="flex space-x-4">
-              <button
-                onClick={() => setActiveCalculator('wall')}
-                className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
-                  activeCalculator === 'wall'
-                    ? 'bg-primary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                Parede
-              </button>
-              <button
-                onClick={() => setActiveCalculator('slab')}
-                className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
-                  activeCalculator === 'slab'
-                    ? 'bg-primary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                Laje
-              </button>
-            </nav>
+
+            <div>
+              {(results.brickCalculation || results.mortarCalculation || results.concreteCalculation) && (
+                <ResultDisplay results={results} />
+              )}
+            </div>
           </div>
         </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="p-6">
-            {activeCalculator === 'wall' ? (
-              <WallCalculator />
-            ) : (
-              <SlabCalculator />
-            )}
-          </div>
-        </div>
-      </main>
-
-      <footer className="bg-white border-t mt-auto">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 text-sm">
-            © 2024 Calculadora de Materiais para Construção. Todos os direitos reservados.
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
+      </div>
+    </Layout>
+  )
 }
 
-export default App;
+export default App
