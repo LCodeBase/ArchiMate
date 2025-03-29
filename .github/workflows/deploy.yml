@@ -39,3 +39,4 @@ jobs:
           branch: gh-pages
           folder: frontend/build
           clean: true
+          commit-message: 'Deploying to gh-pages from @ ${{ github.repository }}@${{ github.sha }} 🚀'
