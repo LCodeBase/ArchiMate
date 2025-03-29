@@ -3,7 +3,7 @@
   "name": "Calculadora de Materiais para Construção",
   "icons": [
     {
-      "src": "logo.svg",
+      "src": "/ArchiMate/logo.svg",
       "type": "image/svg+xml",
       "sizes": "any"
     }
